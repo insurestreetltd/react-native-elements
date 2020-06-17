@@ -9,6 +9,7 @@ exports[`Slider component should bound the max value 1`] = `
   step={0}
   style={
     Object {
+      "flex": 1,
       "height": 40,
       "justifyContent": "center",
     }
@@ -49,7 +50,7 @@ exports[`Slider component should bound the max value 1`] = `
       Object {
         "backgroundColor": "red",
         "borderRadius": 10,
-        "height": 0,
+        "height": 20,
         "position": "absolute",
         "top": 22,
         "transform": Array [
@@ -60,7 +61,7 @@ exports[`Slider component should bound the max value 1`] = `
             "translateY": -0,
           },
         ],
-        "width": 0,
+        "width": 20,
       }
     }
     testID="sliderThumb"
@@ -99,6 +100,7 @@ exports[`Slider component should bound the min value 1`] = `
   step={0}
   style={
     Object {
+      "flex": 1,
       "height": 40,
       "justifyContent": "center",
     }
@@ -139,7 +141,7 @@ exports[`Slider component should bound the min value 1`] = `
       Object {
         "backgroundColor": "red",
         "borderRadius": 10,
-        "height": 0,
+        "height": 20,
         "position": "absolute",
         "top": 22,
         "transform": Array [
@@ -150,7 +152,7 @@ exports[`Slider component should bound the min value 1`] = `
             "translateY": -0,
           },
         ],
-        "width": 0,
+        "width": 20,
       }
     }
     testID="sliderThumb"
@@ -189,6 +191,7 @@ exports[`Slider component should pass down Thumb transform values 1`] = `
   step={0}
   style={
     Object {
+      "flex": 1,
       "height": 40,
       "justifyContent": "center",
     }
@@ -229,21 +232,15 @@ exports[`Slider component should pass down Thumb transform values 1`] = `
       Object {
         "backgroundColor": "red",
         "borderRadius": 10,
-        "height": 0,
+        "height": 20,
         "position": "absolute",
         "top": 22,
         "transform": Array [
           Object {
-            "translateX": 0,
-          },
-          Object {
-            "translateY": -0,
-          },
-          Object {
             "scale": 2,
           },
         ],
-        "width": 0,
+        "width": 20,
       }
     }
     testID="sliderThumb"
@@ -283,6 +280,7 @@ exports[`Slider component should render vertically 1`] = `
   style={
     Object {
       "alignItems": "center",
+      "flex": 1,
       "flexDirection": "column",
       "width": 40,
     }
@@ -325,7 +323,7 @@ exports[`Slider component should render vertically 1`] = `
       Object {
         "backgroundColor": "red",
         "borderRadius": 10,
-        "height": 0,
+        "height": 20,
         "left": 22,
         "position": "absolute",
         "transform": Array [
@@ -336,7 +334,7 @@ exports[`Slider component should render vertically 1`] = `
             "translateY": 0,
           },
         ],
-        "width": 0,
+        "width": 20,
       }
     }
     testID="sliderThumb"
@@ -375,6 +373,7 @@ exports[`Slider component should render with ThumbTouchRect 1`] = `
   step={0}
   style={
     Object {
+      "flex": 1,
       "height": 40,
       "justifyContent": "center",
     }
@@ -415,7 +414,7 @@ exports[`Slider component should render with ThumbTouchRect 1`] = `
       Object {
         "backgroundColor": "red",
         "borderRadius": 10,
-        "height": 0,
+        "height": 20,
         "position": "absolute",
         "top": 22,
         "transform": Array [
@@ -426,7 +425,7 @@ exports[`Slider component should render with ThumbTouchRect 1`] = `
             "translateY": -0,
           },
         ],
-        "width": 0,
+        "width": 20,
       }
     }
     testID="sliderThumb"
@@ -478,6 +477,7 @@ exports[`Slider component should render without issues 1`] = `
   step={0}
   style={
     Object {
+      "flex": 1,
       "height": 40,
       "justifyContent": "center",
     }
@@ -518,7 +518,7 @@ exports[`Slider component should render without issues 1`] = `
       Object {
         "backgroundColor": "red",
         "borderRadius": 10,
-        "height": 0,
+        "height": 20,
         "position": "absolute",
         "top": 22,
         "transform": Array [
@@ -529,7 +529,7 @@ exports[`Slider component should render without issues 1`] = `
             "translateY": -0,
           },
         ],
-        "width": 0,
+        "width": 20,
       }
     }
     testID="sliderThumb"

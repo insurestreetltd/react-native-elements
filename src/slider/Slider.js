@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, Animated, Easing, PanResponder } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Animated,
+  Easing,
+  PanResponder,
+  Platform,
+} from 'react-native';
 
 import { withTheme } from '../config';
 
@@ -327,10 +334,16 @@ class Slider extends Component {
 
     if (this.props.orientation === 'vertical') {
       minimumTrackStyle.height = Animated.add(thumbStart, thumbSize.height / 2);
-      minimumTrackStyle.marginLeft = -trackSize.width;
+      minimumTrackStyle.marginLeft = Platform.select({
+        web: 0,
+        default: -trackSize.width,
+      });
     } else {
       minimumTrackStyle.width = Animated.add(thumbStart, thumbSize.width / 2);
-      minimumTrackStyle.marginTop = -trackSize.height;
+      minimumTrackStyle.marginTop = Platform.select({
+        web: 0,
+        default: -trackSize.height,
+      });
     }
     return minimumTrackStyle;
   }
@@ -373,6 +386,7 @@ class Slider extends Component {
     const { value, containerSize, thumbSize, allMeasured } = this.state;
 
     const mainStyles = containerStyle || styles;
+    const appliedTrackStyle = StyleSheet.flatten(trackStyle || styles.track);
     const thumbStart = value.interpolate({
       inputRange: [minimumValue, maximumValue],
       outputRange: [0, containerSize.width - thumbSize.width],
@@ -410,7 +424,7 @@ class Slider extends Component {
             orientation === 'vertical'
               ? mainStyles.trackVertical
               : mainStyles.trackHorizontal,
-            trackStyle,
+            appliedTrackStyle,
             { backgroundColor: maximumTrackTintColor },
           ])}
           onLayout={this.measureTrack}
@@ -421,7 +435,7 @@ class Slider extends Component {
             orientation === 'vertical'
               ? mainStyles.trackVertical
               : mainStyles.trackHorizontal,
-            trackStyle,
+            appliedTrackStyle,
             minimumTrackStyle,
           ])}
         />
@@ -430,11 +444,6 @@ class Slider extends Component {
           onLayout={this.measureThumb}
           style={StyleSheet.flatten([
             { backgroundColor: thumbTintColor },
-            mainStyles.thumb,
-            orientation === 'vertical'
-              ? mainStyles.thumbVertical(trackStyle && trackStyle.width)
-              : mainStyles.thumbHorizontal(trackStyle && trackStyle.height),
-            thumbStyle,
             {
               transform: [
                 ...this.getThumbPositionStyles(thumbStart),
@@ -442,6 +451,25 @@ class Slider extends Component {
               ],
               ...valueVisibleStyle,
             },
+            mainStyles.thumb,
+            appliedTrackStyle
+              ? orientation === 'vertical'
+                ? {
+                    left:
+                      22 +
+                      (appliedTrackStyle.width
+                        ? (appliedTrackStyle.width - 4) / 2
+                        : 0),
+                  }
+                : {
+                    top:
+                      22 +
+                      (appliedTrackStyle.height
+                        ? (appliedTrackStyle.height - 4) / 2
+                        : 0),
+                  }
+              : {},
+            thumbStyle,
           ])}
         />
         <View
@@ -595,11 +623,13 @@ const styles = StyleSheet.create({
   containerHorizontal: {
     height: 40,
     justifyContent: 'center',
+    flex: 1,
   },
   containerVertical: {
     width: 40,
     flexDirection: 'column',
     alignItems: 'center',
+    flex: 1,
   },
   track: {
     borderRadius: TRACK_SIZE / 2,
@@ -617,12 +647,6 @@ const styles = StyleSheet.create({
     height: THUMB_SIZE,
     borderRadius: THUMB_SIZE / 2,
   },
-  thumbHorizontal: (height) => ({
-    top: 22 + (height ? (height - 4) / 2 : 0),
-  }),
-  thumbVertical: (width) => ({
-    left: 22 + (width ? (width - 4) / 2 : 0),
-  }),
   touchArea: {
     position: 'absolute',
     backgroundColor: 'transparent',
