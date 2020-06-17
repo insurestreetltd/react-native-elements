@@ -1,5 +1,5 @@
 {
-  "name": "react-native-elements",
+  "name": "@findyourcanopy/react-native-elements",
   "version": "2.0.2",
   "description": "React Native Elements & UI Toolkit",
   "main": "src/index.js",
